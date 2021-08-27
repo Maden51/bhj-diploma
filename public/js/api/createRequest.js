@@ -11,17 +11,17 @@ const createRequest = (options = {}) => {
         if (options.method === 'GET') {
             url += '?';
             for (let key in options.data) {
-                url += `&${key}=${options.data[key]}`;
+                url += `${key}=${options.data[key]}`;
             }
 
             xhr.open(options.method, url)
             xhr.send();
         } else {
-            let formData = new FormData;
+            let formData = new FormData();
             for (let key in options.data) {
                 formData.append(key, options.data[key]);
             }
-            xhr.open(options.method, url);
+            xhr.open(options.method, options.url);
             xhr.send(formData);
         }
 
