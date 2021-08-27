@@ -34,8 +34,8 @@ class TransactionsPage {
   registerEvents() {
     this.element.addEventListener('click', (e) => {
       e.preventDefault();
-      const accRemove = document.querySelector('.remove-account');
-      const transactionRemove = document.querySelector('.transaction__remove');
+      const accRemove = e.target.closest('.remove-account');
+      const transactionRemove = e.target.closest('.transaction__remove');
 
       if(accRemove) {
         this.removeAccount();
