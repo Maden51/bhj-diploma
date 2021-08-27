@@ -18,7 +18,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
-    delete localStorage.user;
+    localStorage.removeItem('user');
   }
 
   /**
@@ -26,27 +26,31 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    return JSON.parse(localStorage.getItem('user'));
+    if(localStorage.user) {
+      return JSON.parse(localStorage.getItem('user'));
+  } else {
+    return null
   }
+}
 
   /**
    * Получает информацию о текущем
    * авторизованном пользователе.
    * */
   static fetch(callback) {
-    return createRequest({
+    createRequest({
       method: 'GET',
       url: this.URL + '/current',
-      data: {},
+      data: null,
       callback: (err, response) => {
-        if ( response && response.user) {
-          User.setCurrent(response.user);
+        if (response && response.user) {
+          this.setCurrent(response.user);
         } else {
           this.unsetCurrent();
         }
         callback(err, response);
       }
-    })
+    });
   }
 
   /**
@@ -59,7 +63,6 @@ class User {
     createRequest({
       url: this.URL + '/login',
       method: 'POST',
-      responseType: 'json',
       data,
       callback: (err, response) => {
         if (response && response.user) {
@@ -82,7 +85,7 @@ class User {
       method: 'POST',
       data,
       callback: (err, response) => {
-        if (response.success) {
+        if (response && response.user) {
           this.setCurrent(response.user);
         }
         callback(err, response);
@@ -94,14 +97,14 @@ class User {
    * Производит выход из приложения. После успешного
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
-  static logout(callback) {
+  static logout(data, callback) {
     createRequest({
       ulr: this.URL + '/logout',
       method: 'POST',
       data,
       callback: (err, response) => {
-        if (response.success) {
-          User.unsetCurrent(response.user);
+        if (response, response.user) {
+          this.unsetCurrent(response.user);
         }
         callback(err, response);
       }

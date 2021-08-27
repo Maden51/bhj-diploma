@@ -10,7 +10,7 @@ class Entity {
    * (в зависимости от того, что наследуется от Entity)
    * */
   static list(data, callback){
-    return createRequest({
+    createRequest({
       method: 'GET',
       url: this.URL,
       data,
@@ -24,7 +24,7 @@ class Entity {
    * что наследуется от Entity)
    * */
   static create(data, callback) {
-    return createRequest({
+    createRequest({
       method: 'PUT',
       url: this.URL,
       data,
@@ -36,8 +36,8 @@ class Entity {
    * Удаляет информацию о счёте или доходе/расходе
    * (в зависимости от того, что наследуется от Entity)
    * */
-  static remove(data, callback ) {
-    return createRequest({
+  static remove(data, callback) {
+    createRequest({
       method: 'DELETE',
       url: this.URL,
       data,

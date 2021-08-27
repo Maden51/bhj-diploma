@@ -31,12 +31,11 @@ class AccountsWidget {
    * */
   registerEvents() {
       this.element.addEventListener('click', (e) => {
-        e.preventDefault();
-        const createAcc = e.target.closest('.create-account');
-        App.getModal(createAcc);
-
-        const selectedAcc = e.target.closest('.account');
-        this.onSelectAccount(selectedAcc);
+        if (e.target.classList.contains('create-account')) {
+          App.getModal('createAccount').open();
+        } else if (e.target.closest('.account')) {
+          this.onSelectAccount(e.target.closest('.account'));
+        }
     });
   }
 
@@ -54,7 +53,10 @@ class AccountsWidget {
     Account.list(User.current(), (err, response) => {
       if (response.success && err === null) {
         this.clear();
-        this.renderItem(response.data);
+        response.data.forEach((item) => {
+          this.renderItem(item);
+        });
+        this.registerEvents();
       }
     })
   }
@@ -65,7 +67,9 @@ class AccountsWidget {
    * в боковой колонке
    * */
   clear() {
-    
+    document.querySelectorAll('.account').forEach((item) => {
+      item.remove();
+    })
   }
 
   /**
@@ -76,7 +80,12 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
+    this.element.querySelectorAll('.active').forEach((item) => {
+      item.classList.remove('active');
+    });
 
+    element.classList.add('active');
+    App.showPage('transactions', {account_id: element.dataset.id});
   }
 
   /**
@@ -85,7 +94,15 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
-
+    let output = 
+    `<li class="account" data-id="${item.id}">
+      <a href="#">
+        <span>${item.name}</span>
+        <span>${item.sum}</span>
+      </a>
+    </li>
+    `;
+    return output; 
   }
 
   /**
@@ -95,6 +112,7 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
-
+    let accInfo = this.getAccountHTML(data);
+    this.element.insertAdjacentHTML('beforeend', accInfo);
   }
 }

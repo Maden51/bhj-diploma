@@ -49,10 +49,9 @@ class Sidebar {
       App.getModal('login').open();
     });
 
-    logOut.addEventListener('click', (e) => {
-      e.preventDefault();
+    logOut.addEventListener('click', () => {
       User.logout({}, (err, response) => {
-        if (response.success = true) {
+        if (response.success) {
           App.setState('init');
         }
       });
