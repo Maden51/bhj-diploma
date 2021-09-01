@@ -24,11 +24,11 @@ class CreateTransactionForm extends AsyncForm {
         item.innerHTML = '';
       }
 
-      if (response) {
+      if (response.success) {
         response.data.forEach(element => {
           let account = `<option value="${element.id}">${element.name}</options>`;
           for (let elem of accList) {
-            elem.insertAdjacentHTML('beforeEnd', account);
+            elem.insertAdjacentHTML('beforeend', account);
           }
         });
       }

@@ -10,7 +10,7 @@ class User {
    * локальном хранилище.
    * */
   static setCurrent(user) {
-    localStorage.setItem = ('user', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   /**
@@ -99,9 +99,7 @@ class User {
       method: 'POST',
       data,
       callback: (err, response) => {
-        if (response, response.user) {
-          this.unsetCurrent(response.user);
-        }
+        this.unsetCurrent();
         callback(err, response);
       }
     })

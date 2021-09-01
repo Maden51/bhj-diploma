@@ -44,7 +44,7 @@ class AsyncForm {
     let obj = {};
     for (let item in entries) {
       const key = item[0];
-      const value = item [1];
+      const value = item[1];
       obj[key] = value;
     }
     return obj

@@ -6,9 +6,10 @@ const createRequest = (options = {}) => {
     try {
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
-        let url = options.url;
+        
 
         if (options.method === 'GET') {
+            let url = options.url;
             url += '?';
             for (let key in options.data) {
                 url += `${key}=${options.data[key]}`;
@@ -25,7 +26,7 @@ const createRequest = (options = {}) => {
             xhr.send(formData);
         }
 
-            xhr.addEventListener('readystatechange', () => {
+            xhr.addEventListener('load', function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     options.callback(null, xhr.response)
                 }
