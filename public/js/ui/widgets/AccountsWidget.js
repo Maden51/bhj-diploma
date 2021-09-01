@@ -56,7 +56,6 @@ class AccountsWidget {
         response.data.forEach((item) => {
           this.renderItem(item);
         });
-        this.registerEvents();
       }
     })
   }

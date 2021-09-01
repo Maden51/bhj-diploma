@@ -26,6 +26,12 @@
     },
     {
       "id": "1f547ky29gkt1klols"
+    },
+    {
+      "name": "demo",
+      "email": "demo@test.com",
+      "password": "123",
+      "id": "1f547ky3lgkt20h0a6"
     }
   ],
   "accounts": [
@@ -405,6 +411,24 @@
       "account_id": "1f547ky6bckt1lo3jp",
       "user_id": "1f547ky29gkt1klols",
       "created_at": "2021-09-01T19:17:09.658Z"
+    },
+    {
+      "id": "1f547kyb1ckt1zfpf7",
+      "type": "income",
+      "name": "зп",
+      "sum": 11111,
+      "account_id": "1f547ky6bckt1lo3jp",
+      "user_id": "1f547ky29gkt1klols",
+      "created_at": "2021-09-01T20:59:15.186Z"
+    },
+    {
+      "id": "1f547ky208kt204qug",
+      "type": "expense",
+      "name": "я в шоке",
+      "sum": 10000,
+      "account_id": "1f547ky6bckt1lo3jp",
+      "user_id": "1f547ky29gkt1klols",
+      "created_at": "2021-09-01T21:18:43.431Z"
     }
   ]
 }

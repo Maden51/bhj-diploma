@@ -95,13 +95,15 @@ class User {
    * */
   static logout(data, callback) {
     createRequest({
-      ulr: this.URL + '/logout',
+      url: this.URL + '/logout',
       method: 'POST',
       data,
       callback: (err, response) => {
-        this.unsetCurrent();
+        if(response && response.user) {
+          this.unsetCurrent();
+        }
         callback(err, response);
       }
-    })
+    });
   }
 }
