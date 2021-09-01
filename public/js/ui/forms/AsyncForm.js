@@ -42,7 +42,7 @@ class AsyncForm {
     let formData = new FormData(this.element);
     const entries = formData.entries();
     let obj = {};
-    for (let item in entries) {
+    for (let item of entries) {
       const key = item[0];
       const value = item[1];
       obj[key] = value;

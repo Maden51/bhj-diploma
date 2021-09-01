@@ -112,7 +112,6 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
-    let accInfo = this.getAccountHTML(data);
-    this.element.insertAdjacentHTML('beforeend', accInfo);
+    this.element.innerHTML += this.getAccountHTML(data);
   }
 }

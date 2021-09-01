@@ -62,7 +62,7 @@ class TransactionsPage {
     }
 
     if (confirm('Вы уверены, что хотите удалить счёт?')) {
-      Account.remove(this.lastOptions.account_id, {}, (err, response) => {
+      Account.remove({id: this.lastOptions.account_id}, (err, response) => {
         if(response.success) {
           App.updateWidgets();
         }
@@ -125,7 +125,8 @@ class TransactionsPage {
    * Устанавливает заголовок в элемент .content-title
    * */
   renderTitle(name){
-    this.element.querySelector('.content-title').textContent = name;
+    const contentTitle = this.element.querySelector('.content-title');
+    contentTitle.textContent = name;
   }
 
   /**
@@ -162,7 +163,7 @@ class TransactionsPage {
       <div class="transaction__info">
           <h4 class="transaction__title">${item.name}</h4>
           <!-- дата -->
-          <div class="transaction__date">${item.formatDate(item.created_at)}</div>
+          <div class="transaction__date">${this.formatDate(item.created_at)}</div>
       </div>
     </div>
     <div class="col-md-3">
@@ -177,7 +178,7 @@ class TransactionsPage {
             <i class="fa fa-trash"></i>  
         </button>
     </div>
-</div>`
+</div>`;
   }
 
   /**
@@ -186,10 +187,8 @@ class TransactionsPage {
    * */
   renderTransactions(data){
     this.element.querySelector('.content').innerHTML = '';
-    if (data.lenght) {
       data.forEach(item => {
-        this.element.querySelector('.content').insertAdjacentHTML('beforeend', this.getTransactionHTML(item));
+        this.element.querySelector('.content').innerHTML += this.getTransactionHTML(item);
       })
-    }
   }
 }

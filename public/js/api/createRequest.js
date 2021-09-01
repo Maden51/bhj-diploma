@@ -9,13 +9,13 @@ const createRequest = (options = {}) => {
         
 
         if (options.method === 'GET') {
-            let url = options.url;
-            url += '?';
+            let strUrl = `${options.url}?`;
             for (let key in options.data) {
-                url += `${key}=${options.data[key]}`;
+                strUrl += `${key}=${options.data[key]}&`;
             }
+            const url = strUrl.slice(0, -1);
 
-            xhr.open(options.method, url)
+            xhr.open(options.method, url);
             xhr.send();
         } else {
             let formData = new FormData();
@@ -26,7 +26,7 @@ const createRequest = (options = {}) => {
             xhr.send(formData);
         }
 
-            xhr.addEventListener('load', function() {
+            xhr.addEventListener('load', () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     options.callback(null, xhr.response)
                 }

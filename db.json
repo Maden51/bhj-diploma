@@ -66,38 +66,6 @@
     },
     {
       "user_id": "1f547ky29gkt1klols",
-      "id": "1f547ky4hgkt1knwu6"
-    },
-    {
-      "user_id": "1f547ky29gkt1klols",
-      "id": "1f547ky6lckt1l63yg"
-    },
-    {
-      "user_id": "1f547ky29gkt1klols",
-      "id": "1f547ky1vgkt1lo21y"
-    },
-    {
-      "user_id": "1f547ky29gkt1klols",
-      "id": "1f547ky8n0kt1lo2e8"
-    },
-    {
-      "user_id": "1f547ky29gkt1klols",
-      "id": "1f547ky91skt1lo2sb"
-    },
-    {
-      "user_id": "1f547ky29gkt1klols",
-      "id": "1f547ky7wkkt1lo36v"
-    },
-    {
-      "user_id": "1f547ky29gkt1klols",
-      "id": "1f547ky6bckt1lo3ib"
-    },
-    {
-      "user_id": "1f547ky29gkt1klols",
-      "id": "1f547ky6bckt1lo3ip"
-    },
-    {
-      "user_id": "1f547ky29gkt1klols",
       "id": "1f547ky6bckt1lo3jp"
     },
     {
@@ -428,6 +396,15 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "1f547kyzwkt1vsexn",
+      "type": "income",
+      "name": "demo",
+      "sum": 123,
+      "account_id": "1f547ky6bckt1lo3jp",
+      "user_id": "1f547ky29gkt1klols",
+      "created_at": "2021-09-01T19:17:09.658Z"
     }
   ]
 }
